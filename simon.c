@@ -4,7 +4,7 @@
 #include <time.h>
 #include "boole.h"
 #include "simon.h"
-#define MAX_NUMBER 3//maximo numero generado por generate_game_simon
+#define MAX_NUMBER 4//maximo numero generado por generate_game_simon
 #define MIN_NUMBER 1//minimo numero generado por el generate_game_simon
 #define RANDOM_NUMBER (MIN_NUMBER+(rand()%(MAX_NUMBER)))
 #define DEFAULT_ITERATIONS 10
