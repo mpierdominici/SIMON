@@ -8,10 +8,10 @@ void set_gpio(MPIN * gpio_pines)
 	m_pines=gpio_pines;
 }
 
-int export_gpio(char npin)
+int16_t export_gpio(int8_t npin)
 {
 	FILE * gpiof=NULL;
-	int error=0;
+	int16_t error=0;
 
 
 	if((gpiof = fopen(EXPORT_P,"w"))==NULL)
@@ -36,10 +36,10 @@ int export_gpio(char npin)
 }
 
 
-int unexport_gpio(char npin)
+int16_t unexport_gpio(int8_t npin)
 {
 	FILE * gpiof=NULL;
-	int error=0;
+	int16_t error=0;
 
 
 	if((gpiof = fopen(UNEXPORT_P,"w"))==NULL)
@@ -63,10 +63,10 @@ int unexport_gpio(char npin)
 	return(error);
 }
 
-int direction_gpio(char direction ,char npin)
+int16_t direction_gpio(int8_t direction ,int8_t npin)
 {
 	FILE * gpiof=NULL;
-	int error=0;
+	int16_t error=0;
 
 
 	if((gpiof = fopen(m_pines[npin].mdirection,"w"))==NULL)
@@ -97,10 +97,10 @@ int direction_gpio(char direction ,char npin)
 	return(error);
 }
 
-int value_gpio(char value ,char npin)
+int16_t value_gpio(int8_t value ,int8_t npin)
 {
 	FILE * gpiof=NULL;
-	int error=0;
+	int16_t error=0;
 
 
 	if((gpiof = fopen(m_pines[npin].mvalue,"w"))==NULL)
