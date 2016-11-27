@@ -16,9 +16,9 @@ static uint16_t stage_game_simon=M_FALSE;//contador que indica hasta que parte d
 
 
 //create_simon
-//recive:la cantidad de numeros que el jugador devera memorizar
+//recibe:la cantidad de numeros que el jugador debera memorizar
 //devuelve:nada
-//acccion: reserva memoria equivalente a lo que recive
+//accion: reserva memoria equivalente a lo que recibe
 //
 void create_simon(uint16_t n_de_iteraciones)
 {
@@ -28,7 +28,7 @@ void create_simon(uint16_t n_de_iteraciones)
 
 
 //emergenci_set_up
-//recive=devuelve=nada
+//recibe=devuelve nada
 //accion: esta funcion selecciona DEFAULT_ITERATION, como cantidad de numeros
 //que el jugador deve memorizar
 //
@@ -50,7 +50,7 @@ void destroy_simon(void)//livero el heap
 
 
 //generate_game_simon
-//recive=devuelve=nada
+//recibe=devuelve=nada
 //accion: la guncion genera aleatoriamente numeros entre 1 y 4, y los almacena en el
 //arreglo generado por create_simon. si no se ejecuta create_simon previamente, esta fuancion
 //la llamara emergenci_set_up_simon, y lo creara.
@@ -72,7 +72,7 @@ void generate_game_simon(void)//genera aleatoriamente la secuencia de encendido 
 }
 
 //play_simon
-//recive:la tecla presionada por el usuario
+//recibe:la tecla presionada por el usuario
 //devuelve: OK(indica que la tecla presionada fue correcta)
 //			NEXT_PRINT(indica que ya se presiono correctamente toda una iteracion del simon)
 //			WIN(indica que se gano el juego)
@@ -122,8 +122,8 @@ int16_t play_simon(uint8_t n_press)
 }
 
 //get_simon
-//revive: nada
-//devuelve: puntero al arreglo donde se alamvenan las secuencias de juego
+//recibe: nada
+//devuelve: puntero al arreglo donde se almacenan las secuencias de juego
 //
 uint8_t * get_simon(void)
 {
