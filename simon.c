@@ -1,38 +1,60 @@
 #include <stdio.h>
-
 #include <stdlib.h>
 #include <time.h>
 #include "boole.h"
 #include "simon.h"
 #define MAX_NUMBER 4//maximo numero generado por generate_game_simon
 #define MIN_NUMBER 1//minimo numero generado por el generate_game_simon
-#define RANDOM_NUMBER (MIN_NUMBER+(rand()%(MAX_NUMBER)))
+#define RANDOM_NUMBER (MIN_NUMBER+(rand()%(MAX_NUMBER)))//macro para genera numeros entre MIN_NUMBER Y MAX_NUMBER
 #define DEFAULT_ITERATIONS 10
-static void emergenci_set_up_simon(void);
 
-static uint8_t * secuencia_de_juego=NULL;
-static uint16_t game_iteration=M_FALSE;
-static uint16_t stage_game_simon=M_FALSE;
+static void emergenci_set_up_simon(void);//funcion que inicializa el simon con DEFAULT_ITERATION
+
+static uint8_t * secuencia_de_juego=NULL;//puntero que almacena los numeros generados aleatoriamente
+static uint16_t game_iteration=M_FALSE;//cantidad de numeros aleatorios generados
+static uint16_t stage_game_simon=M_FALSE;//contador que indica hasta que parte del juego se llego
 
 
-
-void create_simon(uint16_t n_de_iteraciones)//reserva memoria para el arreglo de secuencias
+//create_simon
+//recive:la cantidad de numeros que el jugador devera memorizar
+//devuelve:nada
+//acccion: reserva memoria equivalente a lo que recive
+//
+void create_simon(uint16_t n_de_iteraciones)
 {
 	secuencia_de_juego=(uint8_t *)calloc(n_de_iteraciones,sizeof(uint8_t));
 	game_iteration=n_de_iteraciones;
 }
 
+
+//emergenci_set_up
+//recive=devuelve=nada
+//accion: esta funcion selecciona DEFAULT_ITERATION, como cantidad de numeros
+//que el jugador deve memorizar
+//
 static void emergenci_set_up_simon(void)//si no se ejecuta primero create_simon, se crea un arrelgo con un temaño de DEFAULT_ITERATION
 {
 	create_simon(DEFAULT_ITERATIONS);
 	printf("%s\n","no se ha inicializado simon, entonces se inicializo por default" );
 }
 
+
+//destroy_simon
+//revive = devuelve=nada
+//accion: livera el espacio reservado para el juego
+//
 void destroy_simon(void)//livero el heep
 {
 	free(secuencia_de_juego);
 }
 
+
+//generate_game_simon
+//recive=devuelve=nada
+//accion: la guncion genera aleatoriamente numeros entre 1 y 4, y los almacena en el
+//arreglo generado por create_simon. si no se ejecuta create_simon previamente, esta fuancion
+//la llamara emergenci_set_up_simon, y lo creara.
+//
 void generate_game_simon(void)//genera aleatoriamente la secuencia de encendido y la guarda en el arreglo
 {
 	uint8_t counter=M_FALSE;
@@ -49,6 +71,15 @@ void generate_game_simon(void)//genera aleatoriamente la secuencia de encendido 
 	}
 }
 
+//play_simon
+//recive:la tecla presionada por el usuario
+//devuelve: OK(indica que la tecla presionada fue correcta)
+//			NEXT_PRINT(indica que ya se presiono correctamente toda una iteracion del simon)
+//			WIN(indica que se gano el juego)
+//			GAME_OVER(indica que presiono la tecla erronea)
+//
+//
+
 int16_t play_simon(uint8_t n_press)
 {
 	static uint16_t counter_iteration=M_FALSE;
@@ -62,6 +93,8 @@ int16_t play_simon(uint8_t n_press)
 			if (stage_game_simon==(game_iteration-1))//chequeo si ya complete todas las iteraciones del juego
 			{
 				result_simon=WIN;
+				stage_game_simon=M_FALSE;
+				counter_iteration=M_FALSE;
 			}
 			else
 			{
@@ -81,11 +114,17 @@ int16_t play_simon(uint8_t n_press)
 	else
 	{
 		result_simon=GAME_OVER;
+		stage_game_simon=M_FALSE;
+		counter_iteration=M_FALSE;
 	}
 
 	return result_simon;
 }
 
+//get_simon
+//revive: nada
+//devuelve: puntero al arreglo donde se alamvenan las secuencias de juego
+//
 uint8_t * get_simon(void)
 {
 	return secuencia_de_juego;
