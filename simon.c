@@ -43,7 +43,7 @@ static void emergenci_set_up_simon(void)//si no se ejecuta primero create_simon,
 //revive = devuelve=nada
 //accion: livera el espacio reservado para el juego
 //
-void destroy_simon(void)//livero el heep
+void destroy_simon(void)//livero el heap
 {
 	free(secuencia_de_juego);
 }
