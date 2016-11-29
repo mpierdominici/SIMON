@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include "t1pin.h"
 #include "pin.h"
+#include <stdint.h>
 static MPIN * m_pines =NULL;
 
 void set_gpio(MPIN * gpio_pines)
