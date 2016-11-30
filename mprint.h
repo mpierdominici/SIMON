@@ -13,6 +13,8 @@
 #define GPIO_DIRECTION1(n) ("/sys/class/gpio/gpio" #n "/direction")
 #define GPIO_DIRECTION2(n) GPIO_DIRECTION1(n)
 
+#define LED_NUM 4
+
 void toggle ( uint8_t led);
 void *  thread (void *);
 void initiate_out (void);
