@@ -8,5 +8,6 @@ void destroy_simon(void);
 void generate_game_simon(void);
 int16_t play_simon(uint8_t n_press);
 uint8_t * get_simon(void);
+uint8_t get_stage(void);
 
 #endif // SIMON_H

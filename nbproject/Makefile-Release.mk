@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/input.o \
 	${OBJECTDIR}/print.o \
 	${OBJECTDIR}/simon.o \
 	${OBJECTDIR}/simon_main.o
@@ -63,6 +64,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/simon: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/simon ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/input.o: input.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/input.o input.c
 
 ${OBJECTDIR}/print.o: print.c
 	${MKDIR} -p ${OBJECTDIR}

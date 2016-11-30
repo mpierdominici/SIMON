@@ -135,7 +135,7 @@ uint8_t * get_simon(void)
 //devuelve:el stage actual desde 1 hasta n
 //
 //
-void get_stage(void)
+uint8_t get_stage(void)
 {
     return(stage_game_simon+1);
 }

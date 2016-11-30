@@ -15,14 +15,18 @@
 #define PRINT_H
 #include <stdint.h>
 #ifndef RPI_MODE
+#define P_ANCHO 603
+#define P_ALTO 603
 int8_t iniciar_alegro(void);
 int8_t iniciar_variables_print_allegro(void);
-void print_stage_simon(void);
+void * print_stage_simon(void * v);
 void destroy_print (void);
 void setear_botones_imprimir(void);
 void * print_botones(void *);
 void set_print_stage_simon(uint8_t * arreglo_de_secuencias,uint8_t stage_simon);
 void stop_all_thread(void);
+void * get_siplay(void);
+uint8_t is_printign_a_stage(void);
 #endif//allegro mode
 
 

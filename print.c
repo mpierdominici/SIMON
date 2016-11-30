@@ -224,7 +224,10 @@ void setear_botones_imprimir(void)
     (posiciones_botones[3]).boton=boton_amarillo;
 }
 
-
+void * get_siplay(void)
+{
+    return ((void*)pantalla);
+}
 
 #endif
 
@@ -245,10 +248,10 @@ void set_print_stage_simon(uint8_t * arreglo_de_secuencias,uint8_t stage_simon)
 //accion: imprime la secuencai de juego hasta donde se inidque,a travez de set_print_stage_simon
 //
 //
-void print_stage_simon(void)
+void * print_stage_simon(void * v)
 {
     uint8_t counter=M_FALSE;
-   
+   stop_printing_thread=M_TRUE;
     for(counter=M_FALSE;counter<stage_simon_printing;counter++)
     {
         uint8_t black_out;
@@ -262,6 +265,8 @@ void print_stage_simon(void)
        sleep(TIEMPO_IMPREESION_STAGE);
         estado_botones[(arreglo_secueencia_simon[counter]-1)]=M_FALSE;
     }
+   
+   stop_printing_thread=M_FALSE;
 }
 
 //stop_all_thread
@@ -272,4 +277,13 @@ void print_stage_simon(void)
 void stop_all_thread(void)
 {
     stop_thread=M_FALSE;
+}
+//is_printing_a_stage
+//recive:nada;
+//devuelve:M_TRUE si se esta imprimiendo un stage
+//         M_FALSE si no se esta imprimiendo un stage
+//
+uint8_t is_printign_a_stage(void)
+{
+    return stop_printing_thread;
 }

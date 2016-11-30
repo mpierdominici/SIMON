@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/input.o \
 	${OBJECTDIR}/print.o \
 	${OBJECTDIR}/simon.o \
 	${OBJECTDIR}/simon_main.o
@@ -63,6 +64,11 @@ LDLIBSOPTIONS=`pkg-config --libs adwaita-icon-theme` `pkg-config --libs allegro-
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/simon: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/simon ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/input.o: input.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g `pkg-config --cflags adwaita-icon-theme` `pkg-config --cflags allegro-5.0` `pkg-config --cflags allegro_acodec-5.0` `pkg-config --cflags allegro_audio-5.0` `pkg-config --cflags allegro_color-5.0` `pkg-config --cflags allegro_dialog-5.0` `pkg-config --cflags allegro_font-5.0` `pkg-config --cflags allegro_image-5.0` `pkg-config --cflags allegro_main-5.0` `pkg-config --cflags allegro_memfile-5.0` `pkg-config --cflags allegro_physfs-5.0` `pkg-config --cflags allegro_primitives-5.0` `pkg-config --cflags allegro_ttf-5.0`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/input.o input.c
 
 ${OBJECTDIR}/print.o: print.c
 	${MKDIR} -p ${OBJECTDIR}
