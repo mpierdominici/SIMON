@@ -94,3 +94,21 @@ void initiate_out ()
         
     }
 }
+
+/* ejemplo de main
+
+#include "print.h"
+#include <pthread.h>
+
+int main (void)
+{
+    pthread_t print_led;
+    
+    initiate_out();
+    
+    pthread_create(&print_led, NULL, thread, NULL);
+    pthread_join(print_led, NULL);
+    return 0;
+    
+}
+*/
