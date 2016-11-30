@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>boole.h</itemPath>
       <itemPath>pin.h</itemPath>
+      <itemPath>print.h</itemPath>
       <itemPath>simon.h</itemPath>
       <itemPath>t1pin.h</itemPath>
     </logicalFolder>
@@ -18,6 +19,7 @@
                    projectFiles="true">
       <itemPath>print.c</itemPath>
       <itemPath>simon.c</itemPath>
+      <itemPath>simon_main.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -55,6 +57,7 @@
             <linkerOptionItem>`pkg-config --libs allegro_physfs-5.0`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs allegro_primitives-5.0`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs allegro_ttf-5.0`</linkerOptionItem>
+            <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -64,9 +67,13 @@
       </item>
       <item path="print.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="print.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="simon.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="simon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="simon_main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="t1pin.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -97,9 +104,13 @@
       </item>
       <item path="print.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="print.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="simon.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="simon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="simon_main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="t1pin.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -7,21 +7,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boole.h"
-#include <stdint.h>
-static uint8_t estado_botones[4]={0,0,0,0};
+#include "print.h"
+#define TIEMPO_IMPREESION_STAGE 1
 
+static uint8_t estado_botones[4]={0,0,0,0};
+static int8_t stop_printing_thread =M_FALSE;
+static uint8_t * arreglo_secueencia_simon=NULL;
+static uint8_t stage_simon_printing;
+static uint8_t stop_thread=M_TRUE;
 #ifndef RPI_MODE
+//compilacion para allegro
 #include  <allegro5/allegro.h>
+#include <time.h>
 #define P_ANCHO 603
 #define P_ALTO 603
-#include <time.h>
-int8_t iniciar_alegro(void);
-int8_t iniciar_variables_allegro(void);
+#define FPS 60
+
 void clear_pantalla(void);
 void show_changes (void);
 void destroy_print (void);
-void setear_botones_imprimir(void);
-void print_botones(void);
+
+
 static ALLEGRO_BITMAP * fondo=NULL;
 static ALLEGRO_BITMAP * boton_rojo=NULL;
 static ALLEGRO_BITMAP * boton_verde=NULL;
@@ -40,7 +46,12 @@ typedef struct{
 
 BOTONES_ALLEGRO posiciones_botones[4]={{NULL,38,38},{NULL,319,37},{NULL,319,320},{NULL,38,320}};
 
-
+//iniciar_allegro
+//recive:nada
+//devuelve: M_ERROR si no se iicializo satisfatoriamente
+//allegro
+//
+//
 int8_t iniciar_alegro(void)
 {
     if(!al_init()) {
@@ -59,7 +70,12 @@ int8_t iniciar_alegro(void)
     
 }
 
-int8_t iniciar_variables_allegro(void) 
+//iniciar_variables_print_allegro
+//recive: nada
+//devuelve:M_ERROR si no sepudo iniciar las variables necesarias par la ejecuacion de la parte grafica
+//accion:inicializa las variables de alegro.
+//
+int8_t iniciar_variables_print_allegro(void) 
 {
 
 if(iniciar_alegro()==M_ERROR)
@@ -134,18 +150,33 @@ if(iniciar_alegro()==M_ERROR)
  }
 
 
+//clear_pantalla
+//recive:devuelve:nada
+//accion:setea el backbuffer de la pantalla unicamente con la imagen que se selecciono
+//para el fondo. para que se vean los cambios se deve ejecutar show_changes
+//
 void clear_pantalla(void)
 {
    al_set_target_bitmap(al_get_backbuffer(pantalla));
    al_clear_to_color(al_map_rgb(255,255,255));
    al_draw_bitmap(fondo, 0, 0, 0); 
 }
+
+//show_changes
+//recive:devuelve:nada
+//accion:pone en pantalle lo que havia en el backbuffer de la pantalla
+//
 void show_changes (void)
 {
     al_set_target_bitmap(al_get_backbuffer(pantalla));
     al_flip_display();  
 }
 
+//destroy_print
+//recive:devuelve:nada
+//accion: desreserva las memoria utilizada para las variables de allegro
+//
+//
 void destroy_print (void)
 {
       al_destroy_bitmap(fondo);
@@ -157,8 +188,17 @@ void destroy_print (void)
       al_destroy_display(pantalla);
 }
 
-void print_botones(void){
+//print_botones
+//recive:devuelve:nada
+//accion: imprime el color correspondiente a cada boton del simon,
+//si no hay M_FALSE en la posicion, del arreglo estado_botones, correspondiente
+//a cada boton
+void * print_botones(void * A){
+    stop_thread=M_TRUE;
+    while(stop_thread)
+    {
     uint8_t counter=M_FALSE;
+    counter=M_FALSE;
     clear_pantalla();
     for (counter=M_FALSE;counter<4;counter++)
     {
@@ -167,8 +207,15 @@ void print_botones(void){
     }
     al_draw_bitmap(circulo,170,170,0);
     show_changes ();
+    }
 }
 
+//setear_botones_imprimir
+//recive:devuelve:nada
+//accion:prepara la imagen de los botones del simon
+//nota:se deve ejecutar entes que print_botones
+//
+//
 void setear_botones_imprimir(void)
 {
     (posiciones_botones[0]).boton=boton_rojo;
@@ -177,33 +224,52 @@ void setear_botones_imprimir(void)
     (posiciones_botones[3]).boton=boton_amarillo;
 }
 
-int main(void)
-{
-    if((iniciar_alegro()==M_ERROR)||(iniciar_variables_allegro()==M_ERROR)){
-        return 0;
-    }
-    clear_pantalla();
-    show_changes();
-    setear_botones_imprimir();
-    char counter=0;
-    while (1)
-    {
-        
-        if (counter==4)
-        {
-            counter=0;
-        }
-        estado_botones[0]=0;
-        estado_botones[1]=0;
-        estado_botones[2]=0;
-        estado_botones[3]=0;
-        
-        estado_botones[counter]=1;
-        print_botones();
-        counter++;
-        sleep(1);
-    }
-    destroy_print();
-}
+
 
 #endif
+
+//set_print-stage_simon
+//recive: arreglo con la secuencia de juego, y cuanto de esa secuencia deve imprimirse
+//devuelve:nada
+//accion: permite imprimir secuencia de numeros
+//
+//
+void set_print_stage_simon(uint8_t * arreglo_de_secuencias,uint8_t stage_simon)
+{
+    arreglo_secueencia_simon=arreglo_de_secuencias;
+    stage_simon_printing=stage_simon;
+}
+
+//print_stage_simon
+//recive:devuelve:nada
+//accion: imprime la secuencai de juego hasta donde se inidque,a travez de set_print_stage_simon
+//
+//
+void print_stage_simon(void)
+{
+    uint8_t counter=M_FALSE;
+   
+    for(counter=M_FALSE;counter<stage_simon_printing;counter++)
+    {
+        uint8_t black_out;
+        for (black_out=M_FALSE;black_out<4;black_out++)
+        {
+            estado_botones[black_out]=M_FALSE;
+        }
+    
+        sleep(1);
+        estado_botones[(arreglo_secueencia_simon[counter])-1]=M_TRUE;
+        sleep(TIEMPO_IMPREESION_STAGE);
+        estado_botones[(arreglo_secueencia_simon[counter]-1)]=M_FALSE;
+    }
+}
+
+//stop_all_thread
+//recive:devuelve:nada
+//accion: detiene los thread, de impresion
+//
+//
+void stop_all_thread(void)
+{
+    stop_thread=M_FALSE;
+}
