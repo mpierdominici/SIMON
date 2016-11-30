@@ -14,6 +14,8 @@
 #define GPIO_DIRECTION2(n) GPIO_DIRECTION1(n)
 
 #define LED_NUM 4
+#define LED_OFF "0"
+#define LED_ON "1"
 
 void toggle ( uint8_t led);
 void *  thread (void *);
