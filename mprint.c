@@ -2,8 +2,8 @@
 #include "boole.h"
 
 
-static char * leds[4] = {"22","23","24","25"};
-static uint8_t ledstate [4]={0};
+static char * leds[LED_NUM] = {"22","23","24","25"};
+static uint8_t ledstate [LED_NUM]={0};
 
 void toggle ( uint8_t led)
 
@@ -29,7 +29,7 @@ void * thread ()
     
     while (1)
     {
-        for (i=0; i < 4; i++)
+        for (i=0; i < LED_NUM; i++)
         {
             if ((pin_value=fopen(GPIO_VALUE2(leds [i]), "w")))
             {
@@ -38,11 +38,11 @@ void * thread ()
             
             if (ledstate[i]==M_FALSE)
             {
-                notwritten2 = fputs("0", pin_value);
+                notwritten2 = fputs(LED_OFF, pin_value);
             }
             else
             {
-                notwritten2 = fputs("1", pin_value);
+                notwritten2 = fputs(LED_ON, pin_value);
             }
         
             fclose(pin_value);
@@ -62,7 +62,7 @@ void initiate_out ()
     FILE * pin_direction = NULL;
     int notwritten;
     
-    for (i=0;i<4;i++)
+    for (i=0;i<LED_NUM ;i++)
     {
         if ((pin_export = fopen (GPIO_OPEN1, "w"))== NULL)
         {
