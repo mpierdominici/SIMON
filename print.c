@@ -259,7 +259,7 @@ void print_stage_simon(void)
     
         sleep(1);
         estado_botones[(arreglo_secueencia_simon[counter])-1]=M_TRUE;
-        sleep(TIEMPO_IMPREESION_STAGE);
+       sleep(TIEMPO_IMPREESION_STAGE);
         estado_botones[(arreglo_secueencia_simon[counter]-1)]=M_FALSE;
     }
 }
