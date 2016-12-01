@@ -21,6 +21,7 @@ int direction_gpio(char direction ,char npin);
 int value_gpio(char value ,char npin);
 void * thread (void *);
 void changeled_state (char state, char i);
+char * read_value (char npin);
 
 //void juego (MPIN pines []);
 
