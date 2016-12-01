@@ -19,12 +19,13 @@
 #include  "boole.h"
 #include "time.h"
 #include "input.h"
-#define ITERACIONES_SIMON 5
+#define ITERACIONES_SIMON 3
 /*
  * 
  */
 int main(int argc, char** argv) 
 {    
+    uint8_t counter=M_FALSE;
      pthread_t thread_print_botones,print_stage;
     int16_t boton_presionado;
     //void *v;
@@ -56,7 +57,29 @@ int main(int argc, char** argv)
         if((boton_presionado!=M_FALSE)&&(is_printign_a_stage()==M_FALSE))
         {
            
-            play_simon(boton_presionado);
+            switch(play_simon(boton_presionado))
+            {
+                case OK:
+                    
+                    break;
+                case WIN:
+                    counter ++;
+                    goto a;//ACORDATE DE BORRARLO
+                    
+                    break;
+                case GAME_OVER:
+                    
+                    generate_game_simon();
+                    set_print_stage_simon(get_simon(),get_stage());
+                    pthread_create(&print_stage,NULL,print_stage_simon,NULL);
+                    //goto a;
+                    break;
+                case NEXT_PRINT:
+                    counter++;
+                    set_print_stage_simon(get_simon(),get_stage());
+                    pthread_create(&print_stage,NULL,print_stage_simon,NULL);
+                    break;
+            }
                     
             
             
@@ -64,7 +87,8 @@ int main(int argc, char** argv)
         }
         
     }
-    
+   a:
+    printf("Tu puntaje es %d.\n",counter);
     stop_all_thread();
     pthread_join(thread_print_botones,NULL);
     destroy_print();

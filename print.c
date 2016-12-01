@@ -287,3 +287,8 @@ uint8_t is_printign_a_stage(void)
 {
     return stop_printing_thread;
 }
+
+void print_a_button(uint8_t nbotton,uint8_t value)
+{
+    estado_botones[(nbotton-1)]=value;
+}

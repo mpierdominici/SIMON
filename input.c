@@ -10,6 +10,7 @@
 #include "boole.h"
 #include "input.h"
 #include "print.h"
+
 static ALLEGRO_DISPLAY *pantalla =NULL;
 static ALLEGRO_EVENT_QUEUE *cola_de_eventos =NULL;
 enum{PRIMER_CUADRANTE = 1 ,SEGUNDO_CUADRANTE,TERCER_CUADRANTE,CUARTO_CUADRANTE};
@@ -60,12 +61,22 @@ int8_t get_boton (void)
     al_get_next_event(cola_de_eventos, &eventos);
     if(eventos.type==ALLEGRO_EVENT_MOUSE_BUTTON_UP)
     {
+        print_a_button(1,M_FALSE);
+        print_a_button(2,M_FALSE);
+        print_a_button(3,M_FALSE);
+        print_a_button(4,M_FALSE);
+
         devuelve=cuadrante(eventos.mouse.x,eventos.mouse.y);
         eventos.type=ALLEGRO_EVENT_KEY_UP;
     }
     else if(eventos.type==ALLEGRO_EVENT_DISPLAY_CLOSE)
     {
         devuelve=M_ERROR;
+    }
+    else if(eventos.type==ALLEGRO_EVENT_MOUSE_BUTTON_DOWN&&is_printign_a_stage()!=M_TRUE)
+    {
+        print_a_button(cuadrante(eventos.mouse.x,eventos.mouse.y),M_TRUE);
+        eventos.type=ALLEGRO_EVENT_KEY_UP;
     }
     return devuelve;
 }

@@ -27,6 +27,7 @@ void set_print_stage_simon(uint8_t * arreglo_de_secuencias,uint8_t stage_simon);
 void stop_all_thread(void);
 void * get_siplay(void);
 uint8_t is_printign_a_stage(void);
+void print_a_button(uint8_t nbotton,uint8_t value);
 #endif//allegro mode
 
 
