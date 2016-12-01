@@ -196,3 +196,28 @@ void juego (MPIN pines [])
     
 }
 */
+
+char * read_value (char npin)
+{
+    FILE * pin_value=NULL;
+    char str[2];
+    char * value = NULL;
+    
+   if ((pin_value = fopen( m_pines[npin].mvalue , "r"))==NULL)
+    {
+        value = NULL;
+        printf ("Error opening file");
+    }
+    
+    else
+    {
+        if ((value = fgets (str,2, pin_value))==NULL)
+        {
+             printf ("Error reading file");
+        }
+    }
+
+    fclose(pin_value);
+    return value;
+}
+
