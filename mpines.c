@@ -28,6 +28,8 @@
         value_gpio(M_LOW,i);
         }
         
+        //juego (pines);
+        
         pthread_create(&ledoutput, NULL, thread, NULL);
         pthread_join(ledoutput, NULL);
      
