@@ -166,3 +166,33 @@ void change_led_state (char state, char i)
 }
      
 
+/*
+
+boludeo con los leds 
+#include <unistd.h>
+void juego (MPIN pines [])
+{
+    int i;
+    for (i = 0; i <4; i++)
+    {
+        value_gpio(M_HIGH, i);
+        usleep (200);
+        value_gpio(M_LOW, i);
+        
+    }
+    
+    for (i = 0; i <4; i++)
+    {
+        value_gpio(M_HIGH, i);
+        usleep(100);
+    }
+    
+    for (i = 0; i <4; i++)
+    {
+        value_gpio(M_LOW, i);
+        usleep(100);
+    }
+    
+    
+}
+*/
