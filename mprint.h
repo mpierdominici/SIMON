@@ -1,25 +1,25 @@
-#ifndef print_h
-#define print_h
+
+#ifndef PRINT_H
+#define PRINT_H
 
 #include <stdio.h>
-#include "print.h"
 #include <stdint.h>
+#include "pin.h"
+#include "boole.h"
 
-#define GPIO_OPEN1 ("/sys/class/gpio/export")
+#define	M_OUTPUT 0
+#define M_INPUT 1
+#define M_HIGH 1
+#define M_LOW 0
 
-#define GPIO_VALUE1(n) ("/sys/class/gpio/gpio" #n "/value")
-#define GPIO_VALUE2(n) GPIO_VALUE1(n)
+char estado_botones []={0};
 
-#define GPIO_DIRECTION1(n) ("/sys/class/gpio/gpio" #n "/direction")
-#define GPIO_DIRECTION2(n) GPIO_DIRECTION1(n)
+void set_gpio(MPIN * gpio_pines);
+int export_gpio(char npin);
+int unexport_gpio(char npin);
+int direction_gpio(char direction ,char npin);
+int value_gpio(char value ,char npin);
+void * thread (void *);
+void changeled_state (char state, char i);
 
-#define LED_NUM 4
-#define LED_OFF "0"
-#define LED_ON "1"
-
-void toggle ( uint8_t led);
-void *  thread (void *);
-void initiate_out (void);
-
-
-#endif /* print_h */
+#endif /* PRINT_H*/
