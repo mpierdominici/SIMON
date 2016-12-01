@@ -22,4 +22,6 @@ int value_gpio(char value ,char npin);
 void * thread (void *);
 void changeled_state (char state, char i);
 
+//void juego (MPIN pines []);
+
 #endif /* PRINT_H*/
