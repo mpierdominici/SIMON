@@ -54,7 +54,7 @@ ESTO ES PARA INPUT, PARECIDO A OUTPUT
 int main(void)
 {
     int i;
-    pthread_t ledoutput;
+  
     
     MPIN pinesin []=
     {
