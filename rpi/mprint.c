@@ -1,8 +1,9 @@
 
-#include "print.h"
+#include "mprint.h"
 
 
 static MPIN * m_pines =NULL;
+static char estado_botones []={1,1,1,1};
 
 void set_gpio(MPIN * gpio_pines)
 {
@@ -134,7 +135,7 @@ int value_gpio(char value ,char npin)
 
 
 
-void * thread ()
+void * thread (void * v)
 {
     FILE * pin_value =NULL;
     int i;

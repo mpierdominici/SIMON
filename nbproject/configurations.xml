@@ -6,9 +6,11 @@
                    projectFiles="true">
       <itemPath>boole.h</itemPath>
       <itemPath>input.h</itemPath>
+      <itemPath>libaudio.h</itemPath>
       <itemPath>pin.h</itemPath>
       <itemPath>print.h</itemPath>
       <itemPath>simon.h</itemPath>
+      <itemPath>sound_simon.h</itemPath>
       <itemPath>t1pin.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -19,9 +21,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>input.c</itemPath>
+      <itemPath>libaudio.c</itemPath>
       <itemPath>print.c</itemPath>
       <itemPath>simon.c</itemPath>
       <itemPath>simon_main.c</itemPath>
+      <itemPath>sound_simon.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -60,6 +64,7 @@
             <linkerOptionItem>`pkg-config --libs allegro_primitives-5.0`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs allegro_ttf-5.0`</linkerOptionItem>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
+            <linkerOptionItem>-I/usr/local/include -L/usr/local/lib -lSDL</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -68,6 +73,10 @@
       <item path="input.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="input.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="libaudio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="libaudio.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="pin.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -80,6 +89,10 @@
       <item path="simon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="simon_main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sound_simon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sound_simon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="t1pin.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -110,6 +123,10 @@
       </item>
       <item path="input.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="libaudio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="libaudio.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pin.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="print.c" ex="false" tool="0" flavor2="0">
@@ -121,6 +138,10 @@
       <item path="simon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="simon_main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sound_simon.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="sound_simon.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="t1pin.h" ex="false" tool="3" flavor2="0">
       </item>

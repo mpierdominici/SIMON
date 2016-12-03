@@ -8,13 +8,15 @@
 #include <stdlib.h>
 #include "boole.h"
 #include "print.h"
-#define TIEMPO_IMPREESION_STAGE 1
+#include <unistd.h>
+#define TIEMPO_IMPREESION_STAGE 0.5
 
 static uint8_t estado_botones[4]={0,0,0,0};
 static int8_t stop_printing_thread =M_FALSE;
 static uint8_t * arreglo_secueencia_simon=NULL;
 static uint8_t stage_simon_printing;
 static uint8_t stop_thread=M_TRUE;
+static uint8_t quit_stand_by=M_FALSE;
 #ifndef RPI_MODE
 //compilacion para allegro
 #include  <allegro5/allegro.h>
@@ -260,9 +262,9 @@ void * print_stage_simon(void * v)
             estado_botones[black_out]=M_FALSE;
         }
     
-        sleep(1);
+        usleep(500000);
         estado_botones[(arreglo_secueencia_simon[counter])-1]=M_TRUE;
-       sleep(TIEMPO_IMPREESION_STAGE);
+        usleep(500000);
         estado_botones[(arreglo_secueencia_simon[counter]-1)]=M_FALSE;
     }
    
@@ -287,8 +289,64 @@ uint8_t is_printign_a_stage(void)
 {
     return stop_printing_thread;
 }
-
+//print_a_button 
+//recive: el n° de luz que deseamos cambianr de estado, y value, si lo queremos prende o apagar
+//devuelve: nada
+//
+//
 void print_a_button(uint8_t nbotton,uint8_t value)
 {
     estado_botones[(nbotton-1)]=value;
+}
+//get_estado_botones
+//recive:nada
+//devuelve: puntero a char
+//
+
+uint8_t * get_estados_botones(void)
+{
+    return estado_botones;
+}
+
+void * stand_by(void * v)
+{
+    uint8_t counter=M_FALSE;
+    quit_stand_by=M_TRUE;
+    while (quit_stand_by)
+    {
+        for(counter=M_FALSE;counter<4;counter++)
+        {
+            if(!quit_stand_by)
+            {
+                break;
+            }
+            estado_botones[counter]=M_TRUE;
+            if(!quit_stand_by)
+            {
+                break;
+            }
+            sleep(1);
+            estado_botones[counter]=M_FALSE;
+            if(!quit_stand_by)
+            {
+                break;
+            }
+            sleep(1);
+            if(!quit_stand_by)
+            {
+                break;
+            }
+        }
+    }
+    for(counter=M_FALSE;counter<4;counter++)
+        {
+            estado_botones[counter]=M_FALSE;
+    }
+    
+}
+
+void stop_stand_by(void)
+{
+    quit_stand_by=M_FALSE;
+    
 }

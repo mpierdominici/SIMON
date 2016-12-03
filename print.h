@@ -28,6 +28,9 @@ void stop_all_thread(void);
 void * get_siplay(void);
 uint8_t is_printign_a_stage(void);
 void print_a_button(uint8_t nbotton,uint8_t value);
+uint8_t * get_estados_botones(void);
+void * stand_by(void * v);
+void stop_stand_by(void);
 #endif//allegro mode
 
 

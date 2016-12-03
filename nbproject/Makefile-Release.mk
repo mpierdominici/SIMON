@@ -36,9 +36,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/input.o \
+	${OBJECTDIR}/libaudio.o \
 	${OBJECTDIR}/print.o \
 	${OBJECTDIR}/simon.o \
-	${OBJECTDIR}/simon_main.o
+	${OBJECTDIR}/simon_main.o \
+	${OBJECTDIR}/sound_simon.o
 
 
 # C Compiler Flags
@@ -70,6 +72,11 @@ ${OBJECTDIR}/input.o: input.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/input.o input.c
 
+${OBJECTDIR}/libaudio.o: libaudio.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/libaudio.o libaudio.c
+
 ${OBJECTDIR}/print.o: print.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -84,6 +91,11 @@ ${OBJECTDIR}/simon_main.o: simon_main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/simon_main.o simon_main.c
+
+${OBJECTDIR}/sound_simon.o: sound_simon.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sound_simon.o sound_simon.c
 
 # Subprojects
 .build-subprojects:
