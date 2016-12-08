@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "boole.h"
+
+int best_score (int recent_score, char * path);
+
+int best_score (int recent_score, char * path)
+{
+    int oldscore=0;
+    int error;
+    FILE * puntaje_f =NULL;
+    char str[4];
+    char * score = NULL;
+    
+    if((puntaje_f = fopen(path ,"w"))==NULL)
+    {
+        printf("No se pudo abrir el archivo\n");
+        error = M_ERROR;
+    }
+    
+    if (error != M_ERROR)
+    {
+        if ((score = fgets (str, 4, puntaje_f))== NULL)
+        {
+            printf("No se pudo leer el archivo\n");
+            error = M_ERROR;
+        }
+    }
+    
+    
+    if (error != M_ERROR)
+    {
+        oldscore = atoi(score);
+    
+        if (oldscore >= recent_score)
+        
+        {
+            error = sprintf(score, "%d"  , oldscore);
+        }
+    
+        else
+        {
+            error = sprintf (score, "%d", recent_score);
+        }
+    
+    }
+    
+    else
+    {
+        fclose (puntaje_f);
+        return error;
+    }
+    
+    
+    if (error != M_ERROR)
+    error = fputs(score , puntaje_f);
+    
+    fclose (puntaje_f);
+    
+    return error;
+   
+}
