@@ -21,6 +21,7 @@ void sound_mute (void);
 void sound_unmute(void);
 void perdi(void);
 void stop_thread_sound(void);
+void gane(void);
 #ifdef __cplusplus
 extern "C" {
 #endif

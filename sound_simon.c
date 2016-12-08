@@ -20,14 +20,16 @@ static char boton_GREEN[]="./Sound/green.wav";
 static char boton_BLUE[]="./Sound/blue.wav";
 static char boton_YELLOW[]="./Sound/yellow.wav";
 static char error_BUZZ[]="./Sound/buzz.wav";
+static char gane_s[]="./Sound/win.wav";
 static uint8_t mute =M_TRUE;
 static uint8_t thread_sound=M_TRUE;
+
 void inicializar_sonido(void)
 {
     init_sound(); // Init sound driver
 }
 
-void set_audio_vars(void)
+void set_audio_vars(void)//sincroniza el la impresion en pantalla con el audio
 {
    state_botones=get_estados_botones();
 }
@@ -126,6 +128,13 @@ void perdi(void)
 {
      stop_sound();
      set_file_to_play(error_BUZZ);
+     play_sound();
+}
+
+void gane(void)
+{
+     stop_sound();
+     set_file_to_play(gane_s);
      play_sound();
 }
 

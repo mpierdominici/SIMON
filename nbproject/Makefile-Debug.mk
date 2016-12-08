@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/input.o \
 	${OBJECTDIR}/libaudio.o \
 	${OBJECTDIR}/print.o \
+	${OBJECTDIR}/puntaje.o \
 	${OBJECTDIR}/simon.o \
 	${OBJECTDIR}/simon_main.o \
 	${OBJECTDIR}/sound_simon.o
@@ -81,6 +82,11 @@ ${OBJECTDIR}/print.o: print.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g `pkg-config --cflags adwaita-icon-theme` `pkg-config --cflags allegro-5.0` `pkg-config --cflags allegro_acodec-5.0` `pkg-config --cflags allegro_audio-5.0` `pkg-config --cflags allegro_color-5.0` `pkg-config --cflags allegro_dialog-5.0` `pkg-config --cflags allegro_font-5.0` `pkg-config --cflags allegro_image-5.0` `pkg-config --cflags allegro_main-5.0` `pkg-config --cflags allegro_memfile-5.0` `pkg-config --cflags allegro_physfs-5.0` `pkg-config --cflags allegro_primitives-5.0` `pkg-config --cflags allegro_ttf-5.0`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/print.o print.c
+
+${OBJECTDIR}/puntaje.o: puntaje.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g `pkg-config --cflags adwaita-icon-theme` `pkg-config --cflags allegro-5.0` `pkg-config --cflags allegro_acodec-5.0` `pkg-config --cflags allegro_audio-5.0` `pkg-config --cflags allegro_color-5.0` `pkg-config --cflags allegro_dialog-5.0` `pkg-config --cflags allegro_font-5.0` `pkg-config --cflags allegro_image-5.0` `pkg-config --cflags allegro_main-5.0` `pkg-config --cflags allegro_memfile-5.0` `pkg-config --cflags allegro_physfs-5.0` `pkg-config --cflags allegro_primitives-5.0` `pkg-config --cflags allegro_ttf-5.0`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/puntaje.o puntaje.c
 
 ${OBJECTDIR}/simon.o: simon.c
 	${MKDIR} -p ${OBJECTDIR}

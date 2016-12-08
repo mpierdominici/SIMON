@@ -13,9 +13,14 @@
 
 #ifndef INPUT_H
 #define INPUT_H
+#include  "modo_compilacion.h"
 #include <stdint.h>
-int8_t inicializar_input(void);
+#ifndef RPI_MODE
+
 void set_input (void * display);
+#endif//******ALEGRO**********
+
+int8_t inicializar_input(void);
 int8_t get_boton (void);
 
 #ifdef __cplusplus

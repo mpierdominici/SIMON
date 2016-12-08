@@ -9,9 +9,11 @@
         <group>
             <file>file:/home/matias/Escritorio/Programacion%201/SIMON/input.c</file>
             <file>file:/home/matias/Escritorio/Programacion%201/SIMON/print.h</file>
+            <file>file:/home/matias/Escritorio/Programacion%201/SIMON/input.h</file>
+            <file>file:/home/matias/Escritorio/Programacion%201/SIMON/modo_compilacion.h</file>
             <file>file:/home/matias/Escritorio/Programacion%201/SIMON/simon.c</file>
-            <file>file:/home/matias/Escritorio/Programacion%201/SIMON/simon_main.c</file>
             <file>file:/home/matias/Escritorio/Programacion%201/SIMON/print.c</file>
+            <file>file:/home/matias/Escritorio/Programacion%201/SIMON/simon_main.c</file>
         </group>
     </open-files>
 </project-private>

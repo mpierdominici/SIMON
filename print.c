@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "boole.h"
+#include "boole.h"s
 #include "print.h"
 #include <unistd.h>
 #define TIEMPO_IMPREESION_STAGE 0.5
@@ -20,10 +20,10 @@ static uint8_t quit_stand_by=M_FALSE;
 #ifndef RPI_MODE
 //compilacion para allegro
 #include  <allegro5/allegro.h>
-#include <time.h>
+
 #define P_ANCHO 603
 #define P_ALTO 603
-#define FPS 60
+
 
 void clear_pantalla(void);
 void show_changes (void);
@@ -231,7 +231,67 @@ void * get_siplay(void)
     return ((void*)pantalla);
 }
 
+#endif//*****************ALEGRO*************************************************************
+
+#ifdef RPI_MODE
+#include <wiringPi.h>
+#define LED_ROJO 7
+#define LED_VERDE 1
+#define LED_AZUL  5
+#define LED_AMARILLO 2
+void init_print_led(void)
+{
+     wiringPiSetup () ; 
+     pinMode (LED_ROJO, OUTPUT);
+     pinMode (LED_VERDE, OUTPUT);
+     pinMode (LED_AZUL, OUTPUT);
+     pinMode (LED_AMARILLO, OUTPUT);
+}
+
+void * thread (void * v)
+{
+    
+    int i;
+    
+    while (1)
+    {
+        char c []={LED_ROJO,LED_VERDE,LED_AZUL,LED_AMARILLO};
+        
+        for (i=0; i < 4; i++)
+            {
+                if (estado_botones[i]==M_FALSE)
+                {
+                    
+                    digitalWrite(c[i],LOW);
+                    
+                }
+                else
+                {
+                    
+                    digitalWrite(c[i],HIGH);
+                }
+            
+                
+            }
+        
+        
+         
+     }
+     
+ }
+
+
+void end_print(void)
+{
+    digitalWrite(LED_ROJO,LOW);
+    digitalWrite(LED_VERDE,LOW);
+    digitalWrite(LED_AZUL,LOW);
+    digitalWrite(LED_AMARILLO,LOW);
+}
+
+
 #endif
+
 
 //set_print-stage_simon
 //recive: arreglo con la secuencia de juego, y cuanto de esa secuencia deve imprimirse
@@ -298,15 +358,20 @@ void print_a_button(uint8_t nbotton,uint8_t value)
 {
     estado_botones[(nbotton-1)]=value;
 }
+
 //get_estado_botones
 //recive:nada
 //devuelve: puntero a char
 //
-
 uint8_t * get_estados_botones(void)
 {
     return estado_botones;
 }
+
+//stand_by
+//recive:nada
+//devuelve:nada
+//accion: prende los leds del simon en forma secuencial a favor de las agujas del reloj
 
 void * stand_by(void * v)
 {
@@ -345,6 +410,10 @@ void * stand_by(void * v)
     
 }
 
+//stop_stand_by
+//recive:devuelve:nada
+//accion: detien el stand_by
+//
 void stop_stand_by(void)
 {
     quit_stand_by=M_FALSE;

@@ -7,11 +7,12 @@
       <itemPath>boole.h</itemPath>
       <itemPath>input.h</itemPath>
       <itemPath>libaudio.h</itemPath>
+      <itemPath>modo_compilacion.h</itemPath>
       <itemPath>pin.h</itemPath>
       <itemPath>print.h</itemPath>
+      <itemPath>puntaje.h</itemPath>
       <itemPath>simon.h</itemPath>
       <itemPath>sound_simon.h</itemPath>
-      <itemPath>t1pin.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -23,6 +24,7 @@
       <itemPath>input.c</itemPath>
       <itemPath>libaudio.c</itemPath>
       <itemPath>print.c</itemPath>
+      <itemPath>puntaje.c</itemPath>
       <itemPath>simon.c</itemPath>
       <itemPath>simon_main.c</itemPath>
       <itemPath>sound_simon.c</itemPath>
@@ -78,11 +80,17 @@
       </item>
       <item path="libaudio.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="modo_compilacion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pin.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="print.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="print.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="puntaje.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="puntaje.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="simon.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -93,8 +101,6 @@
       <item path="sound_simon.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="sound_simon.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="t1pin.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -127,11 +133,17 @@
       </item>
       <item path="libaudio.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="modo_compilacion.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="pin.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="print.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="print.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="puntaje.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="puntaje.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="simon.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -142,8 +154,6 @@
       <item path="sound_simon.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="sound_simon.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="t1pin.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

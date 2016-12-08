@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/input.o \
 	${OBJECTDIR}/libaudio.o \
 	${OBJECTDIR}/print.o \
+	${OBJECTDIR}/puntaje.o \
 	${OBJECTDIR}/simon.o \
 	${OBJECTDIR}/simon_main.o \
 	${OBJECTDIR}/sound_simon.o
@@ -81,6 +82,11 @@ ${OBJECTDIR}/print.o: print.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/print.o print.c
+
+${OBJECTDIR}/puntaje.o: puntaje.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/puntaje.o puntaje.c
 
 ${OBJECTDIR}/simon.o: simon.c
 	${MKDIR} -p ${OBJECTDIR}
